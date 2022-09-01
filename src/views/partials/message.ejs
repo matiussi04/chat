@@ -1,0 +1,5 @@
+<div
+  class="msg <% if (user.id === message.user_id) { %> user <% } else { %> friend <% } %>"
+>
+  <%= message.text %>
+</div>

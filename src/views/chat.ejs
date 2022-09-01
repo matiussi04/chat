@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../styles/chat.css" />
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="chat">
+      <div class="username-container">
+        <a href="/home"><i class="ph-arrow-left"></i></a>
+        <h1><%= friend.username %></h1>
+      </div>
+      <div class="messages-container">
+        <% messages.forEach(message=> { %> <%- include('./partials/message', {
+        user, message }) %> <% }); %>
+      </div>
+      <form action="">
+        <input type="text" name="message" id="message" placeholder="Mensagem" />
+        <button class="submit"><i class="ph-paper-plane-right"></i></i></button>
+      </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../../../scripts/socket.js"></script>
+  </body>
+</html>
