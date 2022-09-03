@@ -6,9 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 const http = require('http').createServer(app);
 const { Server } = require('socket.io');
-const Message = require('./models/Message');
 const messageController = require('./controllers/messageController');
-const { INTEGER } = require('sequelize');
 const io = new Server(http);
 
 require('./database');
@@ -35,7 +33,7 @@ app.use(passport.session());
 app.use(routes);
 
 io.on('connection', socket => {
-  socket.on('enviar mensagem', dados => {
+  socket.on('send message', dados => {
     const url = socket.handshake.headers.referer;
     const user_id = parseInt(url.split('/')[4]);
     const friend_id = parseInt(url.split('/')[5]);
@@ -43,7 +41,7 @@ io.on('connection', socket => {
 
     messageController.store({ msg, user_id, friend_id });
 
-    io.emit('receber mensagem', { msg, user_id, friend_id, id: socket.id });
+    io.emit('send message', { msg, user_id, friend_id, id: socket.id });
   });
 });
 

@@ -17,12 +17,12 @@ form.addEventListener('submit', e => {
     }
   }
 
-  socket.emit('enviar mensagem', { msg: input.value });
+  socket.emit('send message', { msg: input.value });
 
   input.value = '';
 });
 
-socket.on('receber mensagem', dados => {
+socket.on('send message', dados => {
   console.log(dados);
   createMessage(dados);
 });
